@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Wallet | RudiiFoodie Pay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+
+<div class="recharge-container">
+    <div class="amount-side">
+        <h2>Recharge Wallet</h2>
+        <span class="label-style">Enter Amount</span>
+        <div class="amount-input-wrapper">
+            <span class="currency-symbol">₹</span>
+            <input type="text" id="rechargeAmount" value="100.00" oninput="updatePayButton()">
+        </div>
+
+        <span class="label-style">Quick Add</span>
+        <div class="quick-amounts">
+            <div class="amount-chip" onclick="setAmount(200)">+₹200</div>
+            <div class="amount-chip" onclick="setAmount(500)">+₹500</div>
+            <div class="amount-chip" onclick="setAmount(1000)">+₹1000</div>
+        </div>
+
+        <div style="margin-top: 40px; font-size: 13px; color: var(--text-muted);">
+            <p>• Funds are added instantly to your RudiiFoodie wallet.</p>
+            <p>• Maximum recharge limit: ₹5,000.00</p>
+            <p>• Get 3% cashback when you order food.</p>
+        </div>
+    </div>
+
+    <div class="payment-side">
+        <span class="label-style">Select Payment Method</span>
+        
+        <div class="method-item active" onclick="showForm(this, 'card-form')">
+            <span style="margin-right: 12px;">💳</span>
+            <span style="flex-grow: 1; font-weight: 500;">Credit / Debit Card</span>
+            <small id="cardBadge" style="color:var(--primary); font-weight:700;"></small>
+        </div>
+
+        <div id="card-form" class="form-section active">
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" placeholder="MM / YY" style="flex: 1;" id="expdate" name="expdate">
+                <input type="password" placeholder="CVV" id="cvv" name="cvv" style="flex: 1;" maxlength="3">
+            </div>
+            <button class="pay-btn" id="cardPayBtn" onclick="handlePaymentCard(event)">Add ₹100.00 to Wallet</button>
+        </div>
+
+        <div class="method-item" onclick="showForm(this, 'qr-form')">
+            <span style="margin-right: 12px;">📱</span>
+            <span style="flex-grow: 1; font-weight: 500;">UPI / Instant QR</span>
+        </div>
+
+        <div id="qr-form" class="form-section" style="text-align: center;">
+            <div style="background: white; padding: 15px; border: 1px solid #eee; display: inline-block; border-radius: 10px; margin: 10px 0;">
+                <img id="qr" src="../images/qr.jpeg" alt="QR">
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted);">Scan with any UPI app to pay</p>
+            <button class="pay-btn" onclick="handlePayment(event)">Confirm Transaction</button>
+        </div>
+<p class="err" id="err-msg">Invalid Card Details</p>
+        <p style="text-align: center; font-size: 11px; color: #999; margin-top: 25px;">
+            🔒 Secured By <a id="rudiifoodie">RudiiFoodie</a> encrypted payment gateway
+        </p>
+    </div>
+</div>
+
+<script src="payment.js"></script>
+</body>
+</html>

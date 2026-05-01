@@ -1,0 +1,76 @@
+
+:root {
+    --pen: #212121;
+    --golden: #F2BD12;
+    --white: #fff;
+    --hint-yello: #fae399;
+    --bg: #FFF5E1;
+}
+a {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--pen);
+}
+
+body{
+    background: var(--bg);
+    padding: 2rem;
+}
+.navbar {
+    min-height: 14vh;
+}
+
+.logo {
+    font-size: 3rem;
+    color: var(--golden);
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+.switch-toggle {
+    float: right;
+    background: #242729;
+    overflow: hidden; 
+ 
+}
+
+.switch-toggle input {
+    position: fixed;
+    opacity: 0;
+}
+
+.switch-toggle input + label {
+   
+    width: 33.333%; 
+    box-sizing: border-box; 
+    text-align: center; 
+    
+    padding: 17px;
+    float: left;
+    color: #fff;
+    cursor: pointer;
+}
+
+.switch-toggle input:checked + label {
+    background: green;
+}
+.check-orders{
+    display: none;
+}
+#check-orders,
+#items-management,
+#order-history {
+  display: none;
+}
+
+        /*
+        ----------------------------------
+        BASE & LAYOUT STYLES
+        ----------------------------------
+        */
+        /* Ensuring the body and wrapper handle responsiveness */
+       
+
+      
+
+    

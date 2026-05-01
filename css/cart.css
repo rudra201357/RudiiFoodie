@@ -1,0 +1,130 @@
+/* 🛍️ Cart Panel */
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: -400px; 
+    width: 400px;
+    height: 100%;
+    background: rgb(251, 240, 203);
+    box-shadow: -4px 0 8px rgba(0,0,0,0.3);
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.4s ease;
+    z-index: 9999;
+}
+
+
+
+.cart-panel.active {
+    right: 0; /* slide in */
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.cart-header h3 {
+    margin: 0;
+    color: #ff0800;
+}
+
+#closeCart {
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.cart-items {
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #000000a7;
+    padding-bottom: 10px;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-info {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.cart-item-info h5 {
+    margin: 0;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.cart-item-info span {
+    display: block;
+    color: #555;
+    font-size: 14px;
+}
+
+.cart-item .quantity {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart-item .quantity button {
+    width: 24px;
+    height: 24px;
+    background: #ff0808;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-footer {
+    margin-top: 20px;
+    border-top: 2px solid #000000;
+    padding-top: 15px;
+    bottom: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-footer h4 {
+    color: #ff0800;
+}
+#checkoutBtn {
+    background: #fa0b0b;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-value {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}

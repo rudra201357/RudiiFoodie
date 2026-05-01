@@ -1,0 +1,105 @@
+/* 1. The main container */
+body.blur-background .your-main-content-wrapper {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+    
+    /* This prevents the user from clicking on the blurred content */
+    pointer-events: none;
+}
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 2. The circular trigger wrapper */
+.profile-trigger {
+    width: 110px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    /* overflow: hidden; This clips the image corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3. The actual profile picture (if it exists) */
+.profile-trigger .profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents stretching */
+}
+
+/* 4. The initial circle (if no pic) */
+.profile-trigger .profile-initial {
+   display: inline-block;
+    padding: .9rem 2rem;
+    border-radius: 1rem;
+    color: var(--white);
+    background: var(--golden);
+    font-size: 1rem;
+    transition: .3s ease-in-out;
+}
+.profile-trigger .profile-initial:hover {
+     background: rgb(251, 113, 0);
+}
+/* 5. The "Sign In" button, styled to match */
+.profile-trigger .profile-signin-btn {
+   width: 110px;
+    height: 50px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--golden);
+    color: var(--white);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    text-decoration: none;
+}
+
+.profile-trigger .profile-signin-btn:hover {
+     background: rgb(251, 113, 0);
+}
+
+
+/* 6. The dropdown content (hidden by default) */
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 0;
+    top: 105%; /* Position just below the circle */
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* 7. Links inside the dropdown */
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    text-align: left;
+}
+
+.dropdown-content a i {
+    margin-right: 10px;
+    width: 15px;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* 8. THIS IS THE NEW RULE */
+/* Show the menu when hovering over the main container */
+.profile-dropdown:hover .dropdown-content {
+    display: block;
+}

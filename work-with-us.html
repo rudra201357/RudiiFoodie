@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work With Us</title>
+    <link rel="stylesheet" href="css/work-with-us.css">
+</head>
+<body style="background-image: url('images/wall-paint.png');">
+
+    <div class="registration-container">
+        <div class="form-header">
+            <h2>Create Your Account</h2>
+        </div>
+
+        <form id="registrationForm" action="work-with-us.php" method="POST">
+            
+            <div class="role-selection">
+                <input type="radio" id="delivery" name="role" value="delivery" checked>
+                <label for="delivery">Delivery Partner</label>
+
+                <input type="radio" id="admin" name="role" value="admin">
+                <label for="admin">Manager</label>
+
+                <input type="radio" id="chief" name="role" value="chief">
+                <label for="chief">Chief</label>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="user@gmail.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="9876543210" required>
+            </div>
+
+            <div id="deliveryPartnerFields" class="conditional-group">
+                <div class="form-group">
+                    <label for="vehicleType">Vehicle Type</label>
+                    <select id="vehicleType" name="vehicle_type">
+                        <option value="Bike">Bike</option>
+                        <option value="Car">Car</option>
+                        <option value="Cycle">Bicycle</option>
+                    </select>
+                </div>
+                
+                <div id="vehicleNumberGroup" class="conditional-group">
+                    <div class="form-group">
+                        <label for="vehicleNumber">Vehicle Number</label>
+                        <input type="text" id="vehicleNumber" name="vehicle_number" placeholder="WB33AB9876">
+                    </div>
+                </div>
+            </div>
+
+            <div id="managementFields" class="conditional-group">
+                <div class="form-group">
+                    <label for="experience">Years of Work Experience</label>
+                    <input type="number" id="experience" name="experience" min="0" placeholder="5">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const roleRadios = document.querySelectorAll('input[name="role"]');
+    const vehicleTypeSelect = document.getElementById('vehicleType');
+    const deliveryFields = document.getElementById('deliveryPartnerFields');
+    const managementFields = document.getElementById('managementFields');
+    const vehicleNumberGroup = document.getElementById('vehicleNumberGroup');
+    const form = document.getElementById('registrationForm');
+
+    // --- Clear input fields except radios and passwords ---
+    function clearInputFields() {
+        const inputs = form.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            if (input.type === 'radio' || input.type === 'password') return;
+
+            if (input.tagName.toLowerCase() === 'select') {
+                input.selectedIndex = 0;
+            } else {
+                input.value = '';
+            }
+        });
+    }
+
+    // --- Vehicle Number visibility ---
+    function toggleVehicleNumber() {
+        if (vehicleTypeSelect && vehicleTypeSelect.value === 'Cycle') {
+            vehicleNumberGroup.classList.remove('show');
+        } else {
+            vehicleNumberGroup.classList.add('show');
+        }
+    }
+
+    // --- Role-specific field toggling ---
+    function toggleRoleFields() {
+        const selectedRole = document.querySelector('input[name="role"]:checked')?.value;
+        clearInputFields();
+        deliveryFields.classList.remove('show');
+        managementFields.classList.remove('show');
+
+        if (selectedRole === 'delivery') {
+            deliveryFields.classList.add('show');
+            toggleVehicleNumber();
+        } else if (selectedRole === 'admin' || selectedRole === 'chief') {
+            managementFields.classList.add('show');
+        }
+    }
+
+    // --- Add listeners for radio buttons ---
+    roleRadios.forEach(radio => {
+        radio.addEventListener('click', toggleRoleFields);
+        radio.addEventListener('change', toggleRoleFields);
+    });
+
+    // --- Vehicle type toggle ---
+    if (vehicleTypeSelect) {
+        vehicleTypeSelect.addEventListener('change', toggleVehicleNumber);
+    }
+
+    // --- Initialize on page load ---
+    toggleRoleFields();
+});
+</script>
+
+
+</body>
+</html>

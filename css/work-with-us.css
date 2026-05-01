@@ -1,0 +1,199 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+  /* --- Basic Setup --- */
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  body {
+  
+ background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      /* A cool, dark gradient background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+  }
+
+  /* --- Form Container (Glassmorphism Style) --- */
+  .registration-container {
+      width: 100%;
+      max-width: 500px;
+      /* The "glass" effect */
+      background: rgba(255, 217, 0, 0.112);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      /* For Safari */
+
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+      padding: 2.5rem;
+      color: #f2c512;
+
+      /* Animation for when the form loads */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  .form-header h2 {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      font-size: 1.75rem;
+  }
+
+  /* --- Custom Radio Button Styling --- */
+  .role-selection {
+      display: flex;
+    
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+  }
+
+  .role-selection input[type="radio"] {
+      display: none;
+      /* Hide the default radio */
+  }
+
+  .role-selection label {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem 0.5rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      color: #ccc;
+      transition: all 0.3s ease;
+  }
+
+  .role-selection label:hover {
+      background: rgba(246, 59, 106, 0.332);
+  }
+
+  /* Style for the selected radio button's label */
+  .role-selection input[type="radio"]:checked+label {
+      background-color: #f63b6a;
+      /* Blue accent */
+      color: #ffffff;
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+  }
+
+  /* --- Form Group & Input Styling --- */
+  .form-group {
+      margin-bottom: 1rem;
+  }
+
+  .form-group label {
+      display: block;
+      font-weight: 500;
+      color: #f63b89;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+
+      /* Cool focus animation */
+      transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  /* Required for select arrow in dark mode */
+  .form-group select option {
+      color: #000000;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Placeholder text color */
+  .form-group input::placeholder {
+      color: #888;
+  }
+
+  /* --- Conditional Fields Animation (Slide-down) --- */
+  .conditional-group {
+      /* Start hidden */
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+
+      /* Define the animation */
+      transition: max-height 0.5s ease-in-out,
+          opacity 0.3s ease-in-out,
+          margin-top 0.5s ease-in-out;
+  }
+
+  /* This class will be added by JavaScript */
+  .conditional-group.show {
+      /* Animate to visible */
+      max-height: 500px;
+      /* Large enough to fit content */
+      opacity: 1;
+      margin-top: 1rem;
+      /* Add space when it appears */
+  }
+
+  /* --- Submit Button --- */
+  .submit-btn {
+      width: 100%;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 8px;
+      background: #f68c3b;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+  }
+
+  .submit-btn:hover {
+      background: #2563eb;
+      box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+      transform: translateY(-3px);
+  }
+  /* Hide all conditional fields by default */
+.conditional-group {
+    display: none;
+}
+
+/* Show them dynamically via JS */
+.conditional-group.show {
+    display: block;
+}
+
+
+
+
