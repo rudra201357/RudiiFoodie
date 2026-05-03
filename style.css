@@ -314,6 +314,72 @@ img {
     left: 50%;
     transform: translateX(-50%);
 }
+
+.mobile-menu .profile-initial {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3.25rem;
+    min-height: 3.25rem;
+    padding: .7rem 1rem;
+    border-radius: 1rem;
+    color: var(--white);
+    background: var(--golden);
+    font-size: 1rem;
+}
+
+.mobile-menu .mobile-account {
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-menu .dropdown-content {
+    display: grid;
+    position: static;
+    width: min(78vw, 17rem);
+    min-width: 0;
+    margin-top: .9rem;
+    overflow: hidden;
+    border: 1px solid rgba(242, 189, 18, .35);
+    border-radius: .9rem;
+    background: var(--white);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+}
+
+.mobile-menu .dropdown-content a {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    width: 100%;
+    margin: 0;
+    padding: .85rem 1rem;
+    color: var(--pen);
+    font-size: 1rem;
+    text-align: left;
+}
+
+.mobile-menu .dropdown-content a + a {
+    border-top: 1px solid rgba(0, 0, 0, .08);
+}
+
+.mobile-menu .dropdown-content a i {
+    width: 1.1rem;
+    margin-right: 0;
+    color: var(--golden);
+    text-align: center;
+}
+
+.mobile-menu .profile-signin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    padding: .75rem 1.2rem;
+    border-radius: 1rem;
+    background: var(--golden);
+    color: var(--white);
+    margin: 0;
+}
 /* Sign In */
 
 

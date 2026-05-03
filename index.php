@@ -48,7 +48,7 @@
                 </li>
 
             </ul>
-            
+
 <!-- Toggle option for mobile menu -->
 <div class="mobile-toggle">
 <div id="firstFilter" class="filter-switch">
@@ -95,18 +95,18 @@
 
 <div class="profile-dropdown" id="profileDropdownContainer">
     <div class="profile-trigger" id="profileTrigger">
-        
+
         <?php
 
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-            
+
             // --- USER IS LOGGED IN ---
             $userInitial = $_SESSION['user_initial'] ?? 'User';
                 echo '<div class="profile-initial"><span>' . htmlspecialchars($userInitial) . '</span></div>';
-               echo '<div class="dropdown-content" id="profileMenu">
+               echo '<div class="dropdown-content">
                       <a href="./recharge/payment.html">
-                    <i class="fa-solid fa-indian-rupee-sign"></i></i>Balance: ₹'.  htmlspecialchars($balance) .'
-                    
+                    <i class="fa-solid fa-indian-rupee-sign"></i>Balance: ₹'.  htmlspecialchars($balance) .'
+
                     </a>
                       <a href="view-orders.php">
                     <i class="fa-solid fa-box"></i> View Orders
@@ -120,8 +120,7 @@
                      </div>';
 
         } else {
-            
-    
+
             echo '<a href="register.html" class="profile-signin-btn">Log In &nbsp;
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
                   </a>';
@@ -153,7 +152,38 @@
                 <li>
                     <a href="#footer">ABOUT US</a>
                 </li>
-             
+                <li class="mobile-account">    <?php
+
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+
+            // --- USER IS LOGGED IN ---
+            $userInitial = $_SESSION['user_initial'] ?? 'User';
+                echo '<div class="profile-initial"><span>' . htmlspecialchars($userInitial) . '</span></div>';
+               echo '<div class="dropdown-content">
+                      <a href="./recharge/payment.html">
+                    <i class="fa-solid fa-indian-rupee-sign"></i>Balance: ₹'.  htmlspecialchars($balance) .'
+
+                    </a>
+                      <a href="view-orders.php">
+                    <i class="fa-solid fa-box"></i> View Orders
+                    </a>
+                    <a href="addresses.php">
+                        <i class="fa-solid fa-location-dot"></i> Addresses
+                    </a>
+                    <a href="logout.php">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+                    </a>
+                     </div>';
+
+        } else {
+
+
+            echo '<a href="register.html" class="profile-signin-btn">Log In &nbsp;
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                  </a>';
+        }
+        ?></li>
+
             </ul>
             <script src="js/open-mobile-menu.js"></script>
         </nav>
@@ -243,7 +273,7 @@
                 <div id="menu-options" style="color: rgb(255, 132, 0);  font-size: 0.9em;">
                     <p>Cafe/Delivey Mode</p>
                 </div>
-                
+
                 <div id="menu-container" class="menu-container flex ">
                     <script src="js/menu.js"></script>
                     <script src="js/add-items-to-cart.js"></script>
