@@ -121,7 +121,8 @@ function generateUTR($conn) {
 <html>
 
 <head>
-    <title>Order Placed</title>
+<title>Order Placed</title>
+<link rel="icon" type="image/png" href="images/logo.png">
 
     <style>
         body {

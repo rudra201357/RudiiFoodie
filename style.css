@@ -109,8 +109,23 @@ img {
 }
 
 .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
     font-size: 2rem;
     color: var(--golden);
+}
+
+.logo img {
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: contain;
+    display: inline-block;
+    margin: 0;
+}
+
+.logo span {
+    line-height: 1;
 }
 
 

@@ -25,6 +25,24 @@ h2 {
     text-align: center;
 }
 
+.welcome-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.welcome-brand img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.welcome-brand h2 {
+    margin: 0;
+}
+
 p {
     font-size: 14px;
     font-weight: 100;

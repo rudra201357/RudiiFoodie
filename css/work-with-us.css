@@ -49,6 +49,14 @@
       }
   }
 
+  .form-logo {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 1rem;
+  }
+
   .form-header h2 {
       text-align: center;
       font-weight: 600;

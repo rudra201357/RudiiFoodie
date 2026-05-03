@@ -30,6 +30,7 @@ $result = $conn->query($query);
 <html>
 <head>
 <title>Pending Orders</title>
+<link rel="icon" type="image/png" href="images/logo.png">
 
 <style>
 body{

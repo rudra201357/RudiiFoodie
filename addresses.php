@@ -55,6 +55,7 @@ $result = $conn->query("SELECT * FROM user_addresses WHERE user_id='$user_id' OR
 <head>
     <meta charset="UTF-8">
     <title>Address Dashboard</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RudiiFood</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,7 +24,10 @@
     <!-- HEADER  -->
     <header>
         <nav class="navbar flex between wrapper " >
-            <a href="#" class="logo">RudiiFoodie</a>
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="RudiiFoodie logo">
+                <span>RudiiFoodie</span>
+            </a>
             <!-- DESKTOP MENU -->
             <ul class="navlist flex gap-3 ">
                 <li>
@@ -269,6 +273,7 @@
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
+                                <p>It will  come Soon</p>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -278,6 +283,7 @@
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
+                                <p>Stay stunned</p>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -287,6 +293,7 @@
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star-half-stroke"></i>
+                                <p>Stay stunned</p>
                             </div>
                         </div>
 
@@ -327,7 +334,10 @@
         <div class="footer-container">
             <div class="flex wrapper gap-2">
                 <div class="footer-wrapper">
-                    <a href="#" class="logo">RudiiFoodie</a>
+                    <a href="#" class="logo">
+                        <img src="images/logo.png" alt="RudiiFoodie logo">
+                        <span>RudiiFoodie</span>
+                    </a>
                     <p>We are happy to serve you.</p>
                     <div class="flex gap-1  ">
 

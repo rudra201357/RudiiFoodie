@@ -21,10 +21,23 @@ body{
 }
 
 .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
     font-size: 3rem;
     color: var(--golden);
     font-family: 'Times New Roman', Times, serif;
-    
+
+}
+
+.logo img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+}
+
+.logo span {
+    line-height: 1;
 }
 
 .switch-toggle {
@@ -69,8 +82,3 @@ body{
         ----------------------------------
         */
         /* Ensuring the body and wrapper handle responsiveness */
-       
-
-      
-
-    
