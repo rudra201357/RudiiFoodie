@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
+   die("Unauthorized Access");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
