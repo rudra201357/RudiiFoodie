@@ -130,7 +130,9 @@ function generateUTR($conn) {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            margin: 0;
+            padding: 16px;
         }
 
         .box {
@@ -139,6 +141,7 @@ function generateUTR($conn) {
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            width: min(100%, 460px);
         }
 
         #success {
@@ -161,6 +164,26 @@ function generateUTR($conn) {
             color: white;
             text-decoration: none;
             border-radius: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .box {
+                padding: 28px 18px;
+            }
+
+            .box h1 {
+                font-size: 26px;
+                line-height: 1.2;
+            }
+
+            .orderid {
+                font-size: 16px;
+            }
+
+            .btn {
+                width: 100%;
+                padding-inline: 12px;
+            }
         }
     </style>
 

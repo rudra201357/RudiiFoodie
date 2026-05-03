@@ -103,3 +103,9 @@ body.blur-background .your-main-content-wrapper {
 .profile-dropdown:hover .dropdown-content {
     display: block;
 }
+
+@media (max-width: 870px) {
+    .profile-dropdown {
+        display: none;
+    }
+}

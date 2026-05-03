@@ -149,8 +149,77 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
-            .recharge-container { flex-direction: column; }
-            .amount-side { border-right: none; border-bottom: 1px solid var(--border); }
+            body {
+                align-items: flex-start;
+                padding: 16px;
+            }
+
+            .recharge-container {
+                flex-direction: column;
+                margin: 0;
+                max-width: 520px;
+                border-radius: 16px;
+            }
+
+            .amount-side {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .amount-side,
+            .payment-side {
+                padding: 24px;
+            }
+
+            #rechargeAmount {
+                font-size: 24px;
+            }
+
+            .quick-amounts {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .method-item {
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 10px;
+            }
+
+            .recharge-container {
+                border-radius: 12px;
+            }
+
+            .amount-side,
+            .payment-side {
+                padding: 18px;
+            }
+
+            h2 {
+                font-size: 20px;
+                margin-bottom: 18px;
+            }
+
+            .quick-amounts {
+                gap: 8px;
+            }
+
+            .amount-chip {
+                padding: 9px 6px;
+                font-size: 13px;
+            }
+
+            .form-section > div {
+                flex-direction: column;
+                gap: 0 !important;
+            }
+
+            #qr {
+                width: min(180px, 70vw);
+            }
         }
 #rudiifoodie{
     color: var(--golden);

@@ -50,3 +50,26 @@
 #option2:not(:checked) + label[for="option2"] {
   color: #7d7d7d;
 }
+
+@media (max-width: 870px) {
+  .filter-switch {
+    width: 100%;
+    max-width: 260px;
+    height: 40px;
+  }
+
+  .filter-switch label {
+    font-size: 14px;
+  }
+
+  .filter-switch .background {
+    height: 30px;
+    top: 3px;
+  }
+}
+
+@media (max-width: 430px) {
+  .filter-switch {
+    max-width: none;
+  }
+}

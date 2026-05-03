@@ -101,9 +101,11 @@ img {
     left: 0;          
     right: 0;        
     z-index: 1000;   
- background-color:var(--bg); 
-    
-   
+    background-color:var(--bg);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 .logo {
@@ -126,9 +128,10 @@ img {
 .btn:hover {
     background: rgb(251, 113, 0);
 }
-/* .mobile-toggle{
-    display: none;
-} */
+.mobile-toggle{
+    flex: 0 1 400px;
+    min-width: 0;
+}
 
 /* 🛍️ Cart Panel */
 .cart-panel {
@@ -550,12 +553,7 @@ label[for="sort-options"] {
     background: #444; 
 }
 
-/* REVIEWS SECTION */
-/* .swiper {
-    width: 100%;
-    height: 10rem;
-    background: var(--white);
-} */
+
 .swiper-slide{
 
      background: rgb(228, 228, 228);
@@ -663,9 +661,29 @@ input[type="email"] {
 /* media queries   */
 @media screen and (max-width: 870px) {
 
+    body {
+        padding-top: 92px;
+        overflow-x: hidden;
+    }
+
+    .wrapper {
+        padding-inline: 1rem;
+    }
+
+    .navbar {
+        min-height: 78px;
+        padding-block: .7rem;
+        gap: .75rem;
+    }
+
     .navlist,
-    .nav-btn .btn .profile-dropdown{
+    .profile-dropdown {
         display: none;
+    }
+
+    .nav-btn {
+        flex-wrap: nowrap;
+        flex: 0 0 auto;
     }
 
     .hamburger {
@@ -679,6 +697,8 @@ input[type="email"] {
     }
     .mobile-toggle{
         display: block;
+        flex: 1 1 220px;
+        max-width: 260px;
     }
     .mobile-menu {
         display: flex;
@@ -709,11 +729,272 @@ input[type="email"] {
 
     }
 
+    .hero-section {
+        min-height: auto;
+        padding-block: 2rem 3rem;
+        text-align: center;
+    }
+
+    .hero-section .flex,
+    .content .flex {
+        justify-content: center;
+    }
+
+    .content h1 {
+        font-size: clamp(2.1rem, 10vw, 3.2rem);
+        line-height: 1.08;
+    }
+
+    .para {
+        margin: 1.2rem auto 1.5rem;
+        max-width: 100%;
+    }
+
+    p {
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    .image-container {
+        flex-basis: 260px;
+    }
+
+    .image-container img {
+        max-height: 320px;
+        object-fit: contain;
+    }
+
+    .p-top {
+        padding-top: 4rem;
+    }
+
     .gap-2 {
         gap: 1.4rem;
     }
 
     .gap-4 {
         gap: 4rem;
+    }
+
+    .service-card {
+        flex-basis: 100%;
+    }
+
+    .service-card h5 {
+        font-size: 1.55rem;
+    }
+
+    .service-card p,
+    .subscribe p {
+        font-size: 1.1rem;
+    }
+
+    .menu-container {
+        align-items: stretch;
+        gap: 12px;
+        padding-inline: 10px;
+    }
+
+    .menu-item {
+        max-width: none;
+        padding: 10px;
+    }
+
+    .menu-item h4 {
+        font-size: .95rem;
+    }
+
+    .price-add {
+        gap: 8px;
+    }
+
+    .price {
+        font-size: 1rem;
+    }
+
+    .add-btn {
+        padding: 7px 10px;
+        font-size: .9rem;
+        white-space: nowrap;
+    }
+
+    .cart-panel {
+        right: -100vw;
+        width: min(100vw, 380px);
+        padding: 16px;
+    }
+
+    .cart-item {
+        gap: 8px;
+    }
+
+    .cart-footer {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #checkoutBtn {
+        width: 100%;
+    }
+
+    .input-container {
+        max-width: 100%;
+    }
+
+    .footer-container {
+        margin-top: 5rem;
+        padding-block: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    body {
+        padding-top: 76px;
+    }
+
+    .navbar {
+        min-height: 68px;
+        padding-inline: .75rem;
+        gap: .5rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+        flex: 0 0 auto;
+    }
+
+    .nav-btn {
+        gap: .75rem;
+    }
+
+    .filter-switch {
+        width: min(100%, 190px);
+        height: 40px;
+    }
+
+    .filter-switch label {
+        font-size: 14px;
+    }
+
+    .filter-switch .background {
+        height: 30px;
+        top: 3px;
+    }
+
+    .mobile-menu {
+        top: 82px;
+        width: min(92vw, 20rem);
+        border-radius: 1rem;
+        gap: 1.3rem;
+        padding: 1.4rem;
+    }
+
+    .btn {
+        border-radius: .75rem;
+        font-size: 1rem;
+        padding: .75rem 1.2rem;
+    }
+
+    .social-icon {
+        width: 2.35rem;
+        line-height: 2.35rem;
+    }
+
+    .menu-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .menu-item img {
+        height: 110px;
+    }
+
+    .price-add {
+        align-items: stretch;
+        flex-direction: column;
+        margin-top: 8px;
+    }
+
+    .add-btn {
+        width: 100%;
+    }
+
+    .input-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: .65rem;
+    }
+
+    .input-container input[type="email"] {
+        height: 48px;
+        padding-right: 1rem;
+    }
+
+    .input-container .btn {
+        position: static;
+        transform: none;
+        height: auto;
+        line-height: normal;
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-wrapper {
+        flex-basis: 100%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    body {
+        padding-top: 126px;
+    }
+
+    .navbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        row-gap: .5rem;
+    }
+
+    .logo {
+        grid-column: 1;
+    }
+
+    .nav-btn {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .mobile-toggle {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: stretch;
+        max-width: none;
+    }
+
+    .filter-switch {
+        width: 100%;
+    }
+
+    .mobile-menu {
+        top: 118px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .wrapper {
+        padding-inline: .75rem;
+    }
+
+    .menu-container {
+        gap: 8px;
+        padding-inline: 6px;
+    }
+
+    .menu-item {
+        padding: 8px;
+    }
+
+    .menu-item img {
+        height: 95px;
     }
 }

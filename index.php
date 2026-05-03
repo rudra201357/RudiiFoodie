@@ -117,9 +117,7 @@
 
         } else {
             
-            // --- USER IS NOT LOGGED IN ---
-            // This part is new: it makes the "Sign In" button
-            // also fit the 'profile-trigger' style.
+    
             echo '<a href="register.html" class="profile-signin-btn">Log In &nbsp;
                     <i class="fa-solid fa-arrow-right-to-bracket"></i>
                   </a>';
@@ -151,15 +149,7 @@
                 <li>
                     <a href="#footer">ABOUT US</a>
                 </li>
-                <!-- <li>
-                    <a href="#">CONTACTS</a>
-                </li>
-                <li>
-                    <a href="register.html" class="btn">
-                        Sign in
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                    </a>
-                </li> -->
+             
             </ul>
             <script src="js/open-mobile-menu.js"></script>
         </nav>
