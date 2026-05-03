@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Prepare statement (security)
-    $stmt = $conn->prepare("SELECT user_id, password FROM users WHERE email = ? and role='admin'");
+    $stmt = $conn->prepare("SELECT user_id, role, password FROM users WHERE email = ? and role='admin'");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $_SESSION['user_role'] = $user['role'];
 
             // Redirect to dashboard / home
-            header("Location: admin-portal.html");
+            header("Location: admin-portal.php");
             exit;
 
         } else {

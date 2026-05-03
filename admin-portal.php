@@ -266,6 +266,21 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
     table #status{
       text-transform: capitalize;
     }
+
+    .logout-btn {
+      padding: 10px 18px;
+      background-color: #ff6b6b;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background-color: #ff5252;
+    }
   </style>
 </head>
 
@@ -304,6 +319,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
         <input id="off" name="state-d" type="radio" value="history" onclick="toggleRoleFields()" />
         <label for="off">Order <br>History</label>
       </div>
+      <a href="logout.php" class="logout-btn">Logout</a>
     </nav>
   </header>
   <hr>
