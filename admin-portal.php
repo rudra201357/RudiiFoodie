@@ -281,6 +281,61 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
     .logout-btn:hover {
       background-color: #ff5252;
     }
+
+    .stock-toggle-btn {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .stock-toggle-on {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .stock-toggle-on:hover {
+      background-color: #45a049;
+    }
+
+    .stock-toggle-off {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .stock-toggle-off:hover {
+      background-color: #da190b;
+    }
+
+    .disable-btn {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      margin-left: 8px;
+    }
+
+    .disable-btn.available {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .disable-btn.available:hover {
+      background-color: #45a049;
+    }
+
+    .disable-btn.unavailable {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .disable-btn.unavailable:hover {
+      background-color: #da190b;
+    }
   </style>
 </head>
 
@@ -298,7 +353,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
     console.log("Detected:", checkDeviceSize());
     if (checkDeviceSize() == "mobile") {
       alert("You are using " + checkDeviceSize() + ". Please use desktop.");
-      window.location.href = "admin-portal.html";
+      window.location.href = "admin-portal.php";
     }
 
   </script>
@@ -319,7 +374,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
         <input id="off" name="state-d" type="radio" value="history" onclick="toggleRoleFields()" />
         <label for="off">Order <br>History</label>
       </div>
-      <a href="logout.php" class="logout-btn">Logout</a>
+      <a href="admin-logout.php" class="logout-btn">Logout</a>
     </nav>
   </header>
   <hr>
@@ -386,7 +441,7 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
 
               <div class="form-row">
                 <label>In Stock</label>
-                <select name="in_stock" required>
+                <select name="stock" required>
                   <option value="1" selected>Yes</option>
                   <option value="0">No</option>
                 </select>
@@ -495,6 +550,75 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin'){
         box.style.display = "none";
         updateBtn.innerText = "Update";
       }
+    }
+
+    function toggleStock(code, btn) {
+      // Determine current state from button class
+      const isCurrentlyInStock = btn.classList.contains('stock-toggle-on');
+      const newStatus = isCurrentlyInStock ? 0 : 1;
+
+      // Send request to update stock
+      fetch('update_stock.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'code=' + encodeURIComponent(code) + 'stock=' + newStatus
+      })
+      .then(res => res.text())
+      .then(data => {
+        if (data.trim() === 'success') {
+          // Update button text and class
+          if (newStatus === 1) {
+            btn.innerText = 'In Stock';
+            btn.classList.remove('stock-toggle-off');
+            btn.classList.add('stock-toggle-on');
+          } else {
+            btn.innerText = 'Out of Stock';
+            btn.classList.remove('stock-toggle-on');
+            btn.classList.add('stock-toggle-off');
+          }
+        } else {
+          alert('Failed to update stock: ' + data);
+        }
+      })
+      .catch(err => {
+        alert('Error: ' + err.message);
+        console.error(err);
+      });
+    }
+
+    function disable(code, btn) {
+      // Send request to toggle stock status
+      fetch('disableItem.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'code=' + encodeURIComponent(code)
+      })
+      .then(res => res.text())
+      .then(data => {
+        if (data.startsWith('success:')) {
+          const newStatus = data.split(':')[1];
+          
+          if (newStatus === '1') {
+            btn.innerText = 'Available';
+            btn.classList.remove('unavailable');
+            btn.classList.add('available');
+          } else {
+            btn.innerText = 'Unavailable';
+            btn.classList.remove('available');
+            btn.classList.add('unavailable');
+          }
+        } else {
+          alert('Failed to toggle stock: ' + data);
+        }
+      })
+      .catch(err => {
+        alert('Error: ' + err.message);
+        console.error(err);
+      });
     }
 
 

@@ -271,7 +271,6 @@ img {
     border-radius: 50%;
 }
 
-
 .cart-icon .cart-value {
     position: absolute;
     top: 50%;
@@ -284,6 +283,28 @@ img {
     color: var(--pen);
     text-align: center;
     line-height: 20px;
+}
+
+.fly-to-cart {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.cart-pulse {
+    animation: cart-pulse 0.28s ease-in-out;
+}
+
+@keyframes cart-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
 }
 
 .hamburger {

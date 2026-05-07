@@ -27,7 +27,7 @@ switch ($sort_value) {
             'offer' => 2
         ];
         $category_id = $category_map[$sort_value];
-        $where_clause = " WHERE stock = 1 and category_id = " . (int)$category_id;
+        $where_clause = " WHERE category_id = " . (int)$category_id; // only show in-stock items
         break;
     default:
         break;
@@ -57,7 +57,7 @@ $result = mysqli_query($conn, $query);
 
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        
+        if($row['stock'] == 0) continue; // skip out of stock items
         $item_status_class = '';
         $button_text = 'Add';
         $button_disabled_attr = '';
@@ -82,13 +82,16 @@ if ($result && mysqli_num_rows($result) > 0) {
         ?>
 
         <div class="menu-item <?php echo $item_status_class; ?>">
-            <img src="images/<?php echo htmlspecialchars($row['image_url']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
+            <?php if(str_contains($row['image_url'], 'images/')) 
+                $imgae_path = 'uploads/' . substr($row['image_url'], strlen('images/'));
+            else $imgae_path = 'images/' . $row['image_url'];
+             ?>
+            <img src="<?php echo htmlspecialchars($imgae_path); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
             <h4 style= " text-transform: capitalize;"><?php echo htmlspecialchars($row['name']); ?></h4>
 
             <div class="price-add">
                 <span class="price">₹<?php echo htmlspecialchars($row['price']); ?></span>
-                  <!-- <i class="fa-solid fa-circle-info info-icon" id="infoIcon" data-id="<?= $row ?>"></i> -->
-             
+                
                <button class="add-btn" data-id="<?= $row['code'] ?>" <?= $button_disabled_attr ?>>
                   <?php echo $button_text; ?>
                 </button>

@@ -73,6 +73,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
             saveCartForMode(currentMode, cart);
             updateCartUI();
+
+            // Fly-to-cart animation
+            const cartIcon = document.querySelector('.cart-icon');
+            if (cartIcon && imageEl) {
+                const imageRect = imageEl.getBoundingClientRect();
+                const cartRect = cartIcon.getBoundingClientRect();
+                const flyingImage = imageEl.cloneNode(true);
+
+                flyingImage.classList.add('fly-to-cart');
+                flyingImage.style.top = `${imageRect.top}px`;
+                flyingImage.style.left = `${imageRect.left}px`;
+                flyingImage.style.width = `${imageRect.width}px`;
+                flyingImage.style.height = `${imageRect.height}px`;
+
+                document.body.appendChild(flyingImage);
+
+                const destinationX = cartRect.left + cartRect.width / 2 - imageRect.left - imageRect.width / 2;
+                const destinationY = cartRect.top + cartRect.height / 2 - imageRect.top - imageRect.height / 2;
+
+                requestAnimationFrame(() => {
+                    flyingImage.style.transform = `translate(${destinationX}px, ${destinationY}px) scale(0.2)`;
+                    flyingImage.style.opacity = '0.2';
+                });
+
+                flyingImage.addEventListener('transitionend', () => {
+                    flyingImage.remove();
+                    cartIcon.classList.add('cart-pulse');
+                    setTimeout(() => cartIcon.classList.remove('cart-pulse'), 300);
+                }, { once: true });
+            }
         }
 
         // INCREASE (cart UI)

@@ -24,7 +24,7 @@ if (!in_array($orderby, $allowed_order, true)) {
 }
 
 // Build query using validated identifiers (no direct user injection)
-$query = "SELECT name, price, availability,code
+$query = "SELECT name, price, availability, code, stock
           FROM menu_items
           ORDER BY $sort_value $orderby";
 
@@ -48,6 +48,7 @@ if (!$result) {
     $price = htmlspecialchars($row['price']);
     $avail = htmlspecialchars($row['availability']);
     $code = htmlspecialchars($row['code']); // item1, item2, etc
+    $stock = (int)$row['stock']; // 0 or 1
 
     echo "<div class='item-row'>";
 
@@ -57,7 +58,12 @@ if (!$result) {
 
         // UPDATE BUTTON (unique id using code)
         echo "<button class='update-btn' id= 'btn_$code' onclick=\"showUpdateSection('$code')\">Update</button>";
-
+        
+        // DISABLE BUTTON - show current status
+        $btn_text = $stock === 1 ? 'Available' : 'Unavailable';
+        $btn_class = $stock === 1 ? 'disable-btn available' : 'disable-btn unavailable';
+        echo "<button class='$btn_class' id= 'disable_btn_$code' onclick=\"disable('$code', this)\">$btn_text</button>";
+        
         // HIDDEN SECTION
         echo "<div class='update-box' id='box_$code' style='display:none;'>";
 
@@ -67,11 +73,11 @@ if (!$result) {
             echo "New Stock: <input type='number' name='qty'><br>";
             echo "<input type='hidden' name='hiddenValue' value='$code'>";
             echo "<button id='save-btn' type='submit'>Save</button>";
-            // echo "<button id='disable' onlick=\"disable('$code')\">Unavailable</button>";
+            
             
             echo '</div>';
             echo "</form>";
-
+  
         echo "</div>";
 
     echo "</div>";
