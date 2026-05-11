@@ -84,6 +84,8 @@ if ($result && mysqli_num_rows($result) > 0) {
         <div class="menu-item <?php echo $item_status_class; ?>">
             <?php if(str_contains($row['image_url'], 'images/')) 
                 $imgae_path = 'uploads/' . substr($row['image_url'], strlen('images/'));
+            elseif(str_contains($row['image_url'], 'http')) 
+                $imgae_path = $row['image_url'];
             else $imgae_path = 'images/' . $row['image_url'];
              ?>
             <img src="<?php echo htmlspecialchars($imgae_path); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">

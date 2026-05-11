@@ -1,5 +1,29 @@
 <?php
 require_once 'db.php';
+require_once 'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+use Cloudinary\Cloudinary;
+
+function uploadImageToCloudinary(array $file): string
+{
+    $cloudinary = new Cloudinary([
+        'cloud' => [
+            'cloud_name' => $_ENV['CLOUD_NAME'],
+            'api_key'    => $_ENV['API_KEY'],
+            'api_secret' => $_ENV['API_SECRET'],
+        ],
+        'url' => [
+            'secure' => true,
+        ],
+    ]);
+
+    $upload = $cloudinary->uploadApi()->upload($file['tmp_name'], [
+        'folder' => 'rudiifoodie/menu-items',
+    ]);
+
+    return $upload['secure_url'] ?? '';
+}
 
 // Basic validation
 $item_name   = trim($_POST['item_name'] ?? '');
@@ -37,7 +61,8 @@ if (!empty($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE
     }
 
     $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
-    if (!in_array($file['type'], $allowed)) {
+    $mimeType = mime_content_type($file['tmp_name']);
+    if (!in_array($mimeType, $allowed, true)) {
         echo "ERROR: Invalid image type";
         exit;
     }
@@ -46,20 +71,19 @@ if (!empty($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE
         echo "ERROR: Image too large";
         exit;
     }
+    try {
+        $image_path = uploadImageToCloudinary($file);
 
-    $uploads_dir = __DIR__ . '/uploads';
-    if (!is_dir($uploads_dir)) mkdir($uploads_dir, 0755, true);
-
-    $ext      = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $filename = bin2hex(random_bytes(8)) . "." . $ext;
-    $dest     = $uploads_dir . "/" . $filename;
-
-    if (!move_uploaded_file($file['tmp_name'], $dest)) {
-        echo "ERROR: Failed to save image";
+        if ($image_path === '') {
+            echo "ERROR: Failed to get Cloudinary image URL";
+            exit;
+        }
+    } catch (Exception $e) {
+        echo "ERROR: Cloudinary upload failed: " . $e->getMessage();
         exit;
     }
 
-    $image_path = "images/" . $filename;
+
 }
 
 // insert into menu_items
